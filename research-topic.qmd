@@ -13,3 +13,5 @@ Quarto enables you to weave together content and executable code into a finished
 FOOTBALL: <https://www.kaggle.com/datasets/jeffgallini/college-football-team-stats-2019?select=cfb13.csv>
 
 POPULATION: <https://ec.europa.eu/eurostat/databrowser/view/DEMO_GIND__custom_7680622/bookmark/table?lang=en&bookmarkId=edacacb0-acad-4876-859f-9549d766826b&c=1696497719249>
+
+INCOME: description: https://archive.ics.uci.edu/dataset/2/adult    dataset: https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data              
