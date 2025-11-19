@@ -1,0 +1,22 @@
+## Initial Dataset 2013
+
+```{r}
+library(tidyverse)
+
+cfb13_subset <- read_csv("archive (1)/cfb13.csv") %>%
+	transmute(
+		Team,
+		Games,
+		Wins = Win,
+		Losses = Loss,
+		Fumbles_Recovered = Fumbles.Recovered,
+		Defensive_Rank = Def.Rank,
+		Defensive_Plays = Def.Plays,
+		Yards_Allowed = Yards.Allowed,
+		Total_TDs_Allowed = Total.TDs.Allowed,
+		Avg_Sacks_Per_Game = Average.Sacks.per.Game,
+		Offensive_Rank = Off.Rank
+	)
+
+head(cfb13_subset)
+```
