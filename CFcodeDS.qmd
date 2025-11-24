@@ -1,0 +1,148 @@
+---
+title: "CFcode"
+format: html
+editor: visual
+---
+
+## 
+
+## Initial Dataset 2013
+
+```{r}
+library(tidyverse)
+
+cfb13_subset <- read_csv("archive (1)/cfb13.csv") %>%
+	transmute(
+		Team,
+		Games,
+		Wins = Win,
+		Losses = Loss,
+		Fumbles_Recovered = Fumbles.Recovered,
+		Defensive_Rank = Def.Rank,
+		Defensive_Plays = Def.Plays,
+		Yards_Allowed = Yards.Allowed,
+		Total_TDs_Allowed = Total.TDs.Allowed,
+		Avg_Sacks_Per_Game = Average.Sacks.per.Game,
+		Offensive_Rank = Off.Rank
+	)
+
+head(cfb13_subset)
+shapiro.test(cfb13_subset$Defensive_Rank)
+
+
+    
+
+```
+
+```{r}
+df
+class(df)
+df <- read.csv("archive (1)/cfb13.csv")
+def_cols <- c("Def.Rank", "Yards.Allowed", "Average.Sacks.per.game")
+library(corrplot)
+corrplot(cor(df[ c(def_cols, "wins")]), method = "circle")
+
+names(df)
+
+
+
+```
+
+```{r}
+```
+
+```{r}
+def_cols <- c()
+library(corrplot)
+corrplot(cor(df[, c(def_cols, "Win")]), method = "circle")
+
+
+```
+
+```{r}
+df$WinGroup <- cut(df$Win,
+                   breaks = c(-1,3,6,9,20),
+                   labels = c("0-3","4-6","7-9","10+"))
+barplot(table(df$WinGroup),
+        ylim=c(0, max(table(df$WinGroup))*1.2),
+        main="Counts of Win Groups")
+```
+
+```{r}
+df$DefTier <- cut(df$Def.Rank,
+                  breaks = c(0,25,50,75,100,130),
+                  labels = c("Elite","Top 25","Average","Below Avg","Poor"))
+barplot(table(df$DefTier), main="Distribution of Defensive Rank Tiers")
+
+```
+
+```{r}
+plot(df$Def.Rank, df$Fumbles.Recovered,
+     xlab="Defensive Rank (lower = better)",
+```
+
+```{r}
+ylab="",
+     main="Correlation Between Defensive Rank and Fumbles Recovered")
+
+
+```
+
+```{r}
+colMeans(df[, sapply(df, is.numeric)], na.rm = TRUE)
+```
+
+```{r}
+def_cols <- c( "Yards.Allowed", "Points.Allowed", "Average.Sacks.per.Game","Def.Plays", "Total.TDs.Allowed", "Fumbles.Recovered", "Win")
+
+colMeans(df[, def_cols], na.rm = TRUE)
+
+# Histogram with density line
+hist(df$Win,
+     breaks = 20,
+     freq = FALSE,
+     main = "Distribution of Wins",
+     xlab = "Wins")
+
+# Density curve
+lines(density(df$Win, na.rm = TRUE), lwd = 2)
+
+# Quantiles
+qs <- quantile(df$Win,
+               probs = c(0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95),
+               na.rm = TRUE)
+
+# Colors
+library(RColorBrewer)
+cols <- brewer.pal(n = 7, name = "Set1")
+
+# Vertical quantile lines
+for (i in seq_along(qs)) {
+  abline(v = qs[i], col = cols[i], lwd = 2, lty = 2)
+}
+
+# Legend
+legend("topright",
+       legend = names(qs),
+       col = cols,
+       lwd = 2,
+       lty = 1,
+       cex = 0.8,
+       title = "Quantiles")
+
+```
+
+```{r}
+vars <- c("Win", "Def.Rank", "Fumbles.Recovered", "Points.Allowed", "Total.TDs.Allowed", "Average.Sacks.per.Game", "Def.Plays", "Loss" )
+summary_table <- data.frame(
+  Variable = vars,
+  Mean = sapply(df[vars], mean, na.rm = TRUE),
+  Median = sapply(df[vars], median, na.rm = TRUE),
+  Mode = sapply(df[vars], mode)
+)
+
+summary_table
+
+
+
+```
