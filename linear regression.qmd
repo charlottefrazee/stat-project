@@ -1,0 +1,117 @@
+---
+title: "linear regression"
+format: html
+editor: visual
+---
+
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+## Data
+
+```{r}
+library(tidyverse)
+
+cfb13_subset <- read_csv("archive (1)/cfb13.csv") %>%
+	transmute(
+		Team,
+		Games,
+		Wins = Win,
+		Losses = Loss,
+		Fumbles_Recovered = Fumbles.Recovered,
+		Defensive_Rank = Def.Rank,
+		Defensive_Plays = Def.Plays,
+		Yards_Allowed = Yards.Allowed,
+		Total_TDs_Allowed = Total.TDs.Allowed,
+		Avg_Sacks_Per_Game = Average.Sacks.per.Game,
+		Offensive_Rank = Off.Rank
+	)
+
+head(cfb13_subset)
+```
+
+## Linear Regressions
+
+```{r}
+data(cfb13_subset)
+model_cfb13 <- lm(Wins ~ Fumbles_Recovered, data = cfb13_subset)
+summary(model_cfb13)
+```
+
+```{r}
+data(cfb13_subset)
+model_cfb13 <- lm(Wins ~ Defensive_Rank, data = cfb13_subset)
+summary(model_cfb13)
+
+```
+
+```{r}
+data(cfb13_subset)
+model_cfb13 <- lm(Wins ~ Defensive_Plays, data = cfb13_subset)
+summary(model_cfb13)
+```
+
+```{r}
+data(cfb13_subset)
+model_cfb13 <- lm(Wins ~ Yards_Allowed, data = cfb13_subset)
+summary(model_cfb13)
+```
+
+```{r}
+data(cfb13_subset)
+model_cfb13 <- lm(Wins ~ Total_TDs_Allowed, data = cfb13_subset)
+summary(model_cfb13)
+```
+
+```{r}
+data(cfb13_subset)
+model_cfb13 <- lm(Wins ~ Avg_Sacks_Per_Game, data = cfb13_subset)
+summary(model_cfb13)
+```
+
+## Visualizations
+
+```{r}
+ggplot(cfb13_subset, aes(x=Fumbles_Recovered, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Fumbles Recovered",
+       x="Fumbles Recovered", y="Wins")+geom_smooth(method="lm")
+
+```
+
+```{r}
+ggplot(cfb13_subset, aes(x=Defensive_Rank, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Defensive Rank",
+       x="Def. Rank", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb13_subset, aes(x=Defensive_Plays, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Defensive Plays",
+       x="Def. Plays", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb13_subset, aes(x=Yards_Allowed, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Yards Allowed",
+       x="Yards Allowed", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb13_subset, aes(x=Total_TDs_Allowed, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Total TDs Allowed",
+       x="Total TDs Allowed", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb13_subset, aes(x=Avg_Sacks_Per_Game, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Average Sacks Per Game",
+       x="Avg Sacks Per Game", y="Wins")+geom_smooth(method="lm")
+```
