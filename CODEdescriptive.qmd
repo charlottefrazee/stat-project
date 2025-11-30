@@ -1,0 +1,32 @@
+---
+title: "boxplot&descriptivecodes"
+format: html
+editor: visual
+---
+
+```{r}
+
+
+df$DefRankCat <- cut(df$Def.Rank,
+                     breaks = quantile(df$Def.Rank, probs = c(0, .25, .50, .75, 1), na_rm = TRUE),
+                     include.lowest = TRUE,
+                     labels = c("Top 25%", "25–50%", "50–75%", "Bottom 25%"))
+
+boxplot(df$Win ~ df$DefRankCat,
+        ylab = "Wins",
+        xlab = "Defensive Rank Category",
+        main = "Wins by Defensive Rank Category",
+        col = "lightblue")
+
+```
+
+```{r}
+vars <- c("Win", "Def.Rank", "Fumbles.Recovered", "Points.Allowed", "Total.TDs.Allowed", "Average.Sacks.per.Game", "Def.Plays", "Loss" )
+summary_table <- data.frame(
+  Variable = vars,
+  Mean = sapply(df[vars], mean, na.rm = TRUE),
+  Median = sapply(df[vars], median, na.rm = TRUE)
+)
+
+summary_table
+```
