@@ -1,0 +1,279 @@
+---
+title: "linear regression"
+format: html
+editor: visual
+---
+
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+## Data
+
+```{r}
+library(tidyverse)
+cfb_combined <- map_dfr(2013:2020, function(year) {
+	filename <- paste0("archive (1)/cfb", str_sub(year, 3, 4), ".csv")
+	read_csv(filename, show_col_types = FALSE) %>%
+		select(
+			Team,
+			Games,
+			Win,
+			Loss,
+			Fumbles.Recovered,
+			Def.Rank,
+			Def.Plays,
+			Yards.Allowed,
+			Total.TDs.Allowed,
+			Average.Sacks.per.Game,
+			Off.Rank
+		) %>%
+		transmute(
+			Team_Year = paste0(Team, "_", year),
+			Games,
+			Wins = Win,
+			Losses = Loss,
+			Fumbles_Recovered = Fumbles.Recovered,
+			Defensive_Rank = Def.Rank,
+			Defensive_Plays = Def.Plays,
+			Yards_Allowed = Yards.Allowed,
+			Total_TDs_Allowed = Total.TDs.Allowed,
+			Avg_Sacks_Per_Game = Average.Sacks.per.Game,
+			Offensive_Rank = Off.Rank
+		)
+})
+
+# Save the combined dataset to CSV
+write_csv(cfb_combined, "cfb_combined_2013_2020.csv")
+
+head(cfb_combined)
+
+```
+
+## Linear Regressions
+
+```{r}
+data(cfb_combined)
+model_cfb <- lm(Wins ~ Fumbles_Recovered, data = cfb_combined)
+summary(model_cfb)
+```
+
+```{r}
+data(cfb_combined)
+model_cfb <- lm(Wins ~ Defensive_Rank, data = cfb_combined)
+summary(model_cfb)
+
+```
+
+```{r}
+data(cfb_combined)
+model_cfb <- lm(Wins ~ Defensive_Plays, data = cfb_combined)
+summary(model_cfb)
+```
+
+```{r}
+data(cfb_combined)
+model_cfb <- lm(Wins ~ Yards_Allowed, data = cfb_combined)
+summary(model_cfb)
+```
+
+```{r}
+data(cfb_combined)
+model_cfb <- lm(Wins ~ Total_TDs_Allowed, data = cfb_combined)
+summary(model_cfb)
+```
+
+```{r}
+data(cfb_combined)
+model_cfb <- lm(Wins ~ Avg_Sacks_Per_Game, data = cfb_combined)
+summary(model_cfb)
+```
+
+## Visualizations
+
+```{r}
+ggplot(cfb_combined, aes(x=Fumbles_Recovered, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Fumbles Recovered",
+       x="Fumbles Recovered", y="Wins")+geom_smooth(method="lm")
+
+```
+
+```{r}
+ggplot(cfb_combined, aes(x=Defensive_Rank, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Defensive Rank",
+       x="Def. Rank", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb_combined, aes(x=Defensive_Plays, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Defensive Plays",
+       x="Def. Plays", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb_combined, aes(x=Yards_Allowed, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Yards Allowed",
+       x="Yards Allowed", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb_combined, aes(x=Total_TDs_Allowed, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Total TDs Allowed",
+       x="Total TDs Allowed", y="Wins")+geom_smooth(method="lm")
+```
+
+```{r}
+ggplot(cfb_combined, aes(x=Avg_Sacks_Per_Game, y=Wins)) +
+  geom_point(color="grey40") +
+  labs(title="Wins vs Average Sacks Per Game",
+       x="Avg Sacks Per Game", y="Wins")+geom_smooth(method="lm")
+```
+
+## R Squared Values and Regression Equations
+
+```{r}
+install.packages("ggpmisc")
+library(ggpmisc)
+library(ggplot2)
+
+ggplot(cfb_combined, aes(Fumbles_Recovered, Wins)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x,
+    parse = TRUE
+  ) +
+  labs(
+    x = "Fumbles Recovered",
+    y = "Wins"
+  )
+
+```
+
+```{r}
+reg_summary <- function(data, response, predictor) {
+  
+  # Build formula from variable names
+  formula <- as.formula(paste(response, "~", predictor))
+  
+  # Fit model
+  model <- lm(formula, data = data)
+  
+  # Extract components
+  coefs <- coef(model)
+  intercept <- round(coefs[1], 4)
+  slope <- round(coefs[2], 4)
+  r2 <- round(summary(model)$r.squared, 4)
+  
+  # Print results
+  cat("Regression equation:\n")
+  cat(paste0(response, " = ", intercept, " + ", slope, " * ", predictor, "\n\n"))
+  cat("R-squared:\n")
+  cat(r2, "\n")
+}
+reg_summary(cfb_combined, "Wins", "Fumbles_Recovered")
+
+```
+
+```{r}
+ggplot(cfb_combined, aes(Defensive_Rank, Wins)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x,
+    parse = TRUE
+  ) +
+  labs(
+    x = "Defensive Rank",
+    y = "Wins"
+  )
+```
+
+```{r}
+reg_summary(cfb_combined, "Wins", "Defensive_Rank")
+
+```
+
+```{r}
+ggplot(cfb_combined, aes(Defensive_Plays, Wins)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x,
+    parse = TRUE
+  ) +
+  labs(
+    x = "Defensive Plays",
+    y = "Wins"
+  )
+```
+
+```{r}
+reg_summary(cfb_combined, "Wins", "Defensive_Plays")
+```
+
+```{r}
+ggplot(cfb_combined, aes(Yards_Allowed, Wins)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x,
+    parse = TRUE
+  ) +
+  labs(
+    x = "Yards Allowed",
+    y = "Wins"
+  )
+```
+
+```{r}
+reg_summary(cfb_combined, "Wins", "Yards_Allowed")
+```
+
+```{r}
+ggplot(cfb_combined, aes(Total_TDs_Allowed, Wins)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x,
+    parse = TRUE
+  ) +
+  labs(
+    x = "Total TDs Allowed",
+    y = "Wins"
+  )
+```
+
+```{r}
+reg_summary(cfb_combined, "Wins", "Total_TDs_Allowed")
+```
+
+```{r}
+ggplot(cfb_combined, aes(Avg_Sacks_Per_Game, Wins)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x,
+    parse = TRUE
+  ) +
+  labs(
+    x = "Average Sacks Per Game",
+    y = "Wins"
+  )
+```
+
+```{r}
+reg_summary(cfb_combined, "Wins", "Avg_Sacks_Per_Game")
+```
