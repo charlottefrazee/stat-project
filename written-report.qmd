@@ -1,1 +1,33 @@
 
+---
+title: "Written Report"
+format: html
+editor: visual
+---
+## Introduction and Data
+
+### Introduction
+Our project motivation stems from our interest in Georgia Tech's football team's recent losses. We want to be able to improve their chances of winning through using statistical analysis. There is a popular saying that "defense wins championships", so we decided that this idea would be something to investigate further. We want to verify through statistics that this saying is a guiding principle that teams should follow to improve their performance. This project will give statistics on much defense really matters in making wins happen. Our research question is "Does defense win championships?". Understanding this question will give coaches a better understanding on where to improve. We also want to understand if specific aspects of defense matter more than others for winning.
+
+### Data
+The [dataset](https://www.kaggle.com/datasets/jeffgallini/college-football-team-stats-2019?select=cfb13.csv) is from Kaggle. The data includes the team statistics for all of the Football Bowl Subdivision level teams from 2013 to 2023 with around 145 different features. We decided for our testing we would use these variables found in figure 1 The time period was cut down to 2013 to 2020 due to corruption of the columns in future years.
+
+![](images/Figure1.png)
+<div style="text-align: center;"><em>Figure 1: Key variables used in analysis</em></div>
+
+Below is a table of defintions of key variables
+
+| Variable | Description |
+|----------|-------------|
+| **Team_Year** | Unique identifier combining team name and season year (e.g., "Alabama (SEC)_2013") |
+| **Games** | Total number of games played in the season |
+| **Wins** | Number of games won during the season |
+| **Losses** | Number of games lost during the season |
+| **Fumbles_Recovered** | Number of fumbles recovered by the defense |
+| **Defensive_Rank** | Team's overall defensive ranking (lower number = better defense) |
+| **Defensive_Plays** | Total number of defensive plays executed during the season |
+| **Yards_Allowed** | Total yards allowed to opponents throughout the season |
+| **Total_TDs_Allowed** | Total touchdowns allowed to opponents |
+| **Avg_Sacks_Per_Game** | Average number of quarterback sacks per game |
+| **Offensive_Rank** | Team's overall offensive ranking (lower number = better offense) |
+
