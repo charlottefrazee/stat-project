@@ -3,7 +3,7 @@
 ```{r}
 library(tidyverse)
 cfb_combined <- map_dfr(2013:2020, function(year) {
-	filename <- paste0("archive (1)/cfb", str_sub(year, 3, 4), ".csv")
+	filename <- paste0("original_dataset/cfb", str_sub(year, 3, 4), ".csv")
 	read_csv(filename, show_col_types = FALSE) %>%
 		select(
 			Team,
