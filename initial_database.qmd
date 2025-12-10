@@ -33,8 +33,5 @@ cfb_combined <- map_dfr(2013:2020, function(year) {
 		)
 })
 
-# Save the combined dataset to CSV
-write_csv(cfb_combined, "cfb_combined_2013_2020.csv")
-
 head(cfb_combined)
 ```
