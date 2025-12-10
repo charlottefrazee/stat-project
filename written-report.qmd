@@ -33,6 +33,14 @@ Below is a table of defintions of key variables
 | **Avg_Sacks_Per_Game** | Average number of quarterback sacks per game |
 | **Offensive_Rank** | Team's overall offensive ranking (lower number = better offense) |
 
+## Descriptive Statistics
+Here are some of the descriptive statistics highlights using the information regarding college football from the 2013 through 2020 seasons.
+![DS](stat-project/images/descstats.png) 
+Most of the medians and means for these values are pretty close, meaning the data is not very skewed in either direction. Wins and losses are an interesting data point as not every team played the same number of games. One data point with a somewhat noticeable skew is defensive plays, being skewed towards fewer defensive plays. This makes sense as "splash plays" are less common.
+
+Here is a boxplot using quartiles of defensive rank. 
+![BP](stat-project/images/boxplot.png)
+The median of wins gets progressively lower with each lower quartile. There is an apparent correlation between defensive quality and wins. There are some outliers in each category, showing that there are other factors involved in winning outside of defense, but that defensive rank does contribute. 
 ## Results
 
 To test the strength of the relationship between the number of wins, the dependent variable, and defensive statistics, the independent variables, we used linear regression tests. The linear regression visualizations, regression equations, and the R-squared value helped answer the research question, “Does defense win championships,” by showing how defensive statistics impact the number of wins, providing the answer of whether or not defense correlates to winning championships. These tests quantify how much each defensive statistic, namely fumbles recovered, defensive rank, defensive plays, yards allowed, total touchdowns allowed, and average sacks per game, had the most effect on wins.
