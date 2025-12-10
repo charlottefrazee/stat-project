@@ -49,6 +49,7 @@ To test the strength of the relationship between the number of wins, the depende
 For context, the linear regression model visualizes the strength of each relationship, and the regression equations show mathematical relationships, quantifying how changes in the independent variable affects the dependent variable. Positive coefficients signify a direct relationship while negative coefficients represent indirect relationships.
 
 On top of this, we used a t-test to determine the probability that the standard deviation of (defensive rank)/(wins) was equal to zero. To get the dataset for this test, we grouped 110 datapoints into groups of 5 (excluding the 111th datapoint that required dividing by zero) and calculated the standard deviation of each group, which resulted in a dataset of 10 values. Then we used the built-in t-test to determine the probability that the mean standard deviation was equal to zero.
+
 ## Results
 
 The results of the linear regression testing are as follows:
