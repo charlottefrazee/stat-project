@@ -41,11 +41,14 @@ Most of the medians and means for these values are pretty close, meaning the dat
 Here is a boxplot using quartiles of defensive rank. 
 ![BP](stat-project/images/boxplot.png)
 The median of wins gets progressively lower with each lower quartile. There is an apparent correlation between defensive quality and wins. There are some outliers in each category, showing that there are other factors involved in winning outside of defense, but that defensive rank does contribute. 
-## Results
+
+##Methodology
 
 To test the strength of the relationship between the number of wins, the dependent variable, and defensive statistics, the independent variables, we used linear regression tests. The linear regression visualizations, regression equations, and the R-squared value helped answer the research question, “Does defense win championships,” by showing how defensive statistics impact the number of wins, providing the answer of whether or not defense correlates to winning championships. These tests quantify how much each defensive statistic, namely fumbles recovered, defensive rank, defensive plays, yards allowed, total touchdowns allowed, and average sacks per game, had the most effect on wins.
 
 For context, the linear regression model visualizes the strength of each relationship, and the regression equations show mathematical relationships, quantifying how changes in the independent variable affects the dependent variable. Positive coefficients signify a direct relationship while negative coefficients represent indirect relationships.
+
+## Results
 
 The results of the testing is as follows:
 
@@ -59,9 +62,9 @@ Furthermore, no R-squared value reached 0.5, meaning the defensive statistics la
 
 Ultimately, the linear regression visualizations and regression equations show that better defensive statistics possess a strong relationship with a higher number of wins, but the R-squared values show that they do not correlate strongly enough to be the driving force.
 
-## discussion & conclusion
+## Discussion & Conclusion
 
-### discussion
+### Discussion
 It seems based on the statistical tests run on the data that good defense does positively impact wins in college football, but is not the only factor determining wins. The linear regressions show strong correlation between good defense and good wins, however the R^2 values show that the correlation is strong enough to call defense the main factor in whether a college football team will win their game. It is good for teams to work on a strong defense, but it seems there are other areas of the team that can't be ignored. Football data presents a challenge in seperating variables as variables such as yards allowed and touch downs allowed are definitely connected to each other. There is also no way to claim causation as there are many unnacounted for variables in football that could affect performance, such as loud fans are bad weather. The only thing we can look at regarding college football is correlation.
 
 
