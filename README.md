@@ -1,10 +1,8 @@
-# Does Defense Win Championships?
-
-## Project Description
+# Project Description
 
 This project investigates the whether or not "defense wins championships" in college football by analyzing defensive statistics and their correlation to team wins using various statistical methods. 
 
-## Data Dictionary
+# Data Dictionary
 
 | Field Name | Data Type | Description |
 |----------|------|-------------|
