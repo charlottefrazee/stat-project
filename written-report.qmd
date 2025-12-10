@@ -48,9 +48,10 @@ To test the strength of the relationship between the number of wins, the depende
 
 For context, the linear regression model visualizes the strength of each relationship, and the regression equations show mathematical relationships, quantifying how changes in the independent variable affects the dependent variable. Positive coefficients signify a direct relationship while negative coefficients represent indirect relationships.
 
+On top of this, we used a t-test to determine the probability that the standard deviation of (defensive rank)/(wins) was equal to zero. 
 ## Results
 
-The results of the testing is as follows:
+The results of the linear regression testing are as follows:
 
 The regression equation for fumbles recovered is Wins = 4.2453 + 0.2633x, and the R-squared value is 0.074. The regression equation for defensive rank is Wins = 9.4977 + -0.048x, with 0.3122 as the R-squared value. For defensive plays, the equation is Wins = -1.9824 + 0.0098x, and the R-squared value is 0.1934. Wins = 6.3529 is the regression equation for yards allowed, with an R-squared value of zero. For total touchdowns allowed, the regression equation is Wins = 10.4973 + -0.0967x, and the R-squared value is 0.1397. Lastly, the regression equation for average sacks per game is Wins = 9.9669 + -1.6792x, and the R-squared value is 0.1593. The graphs with all three components are shown below:
 
