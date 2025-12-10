@@ -3,11 +3,6 @@ title: "research-topic"
 format: html
 editor: visual
 ---
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
 ## LINKS
 
 FOOTBALL: <https://www.kaggle.com/datasets/jeffgallini/college-football-team-stats-2019?select=cfb13.csv>
