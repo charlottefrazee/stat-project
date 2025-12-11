@@ -68,6 +68,7 @@ Ultimately, the linear regression visualizations and regression equations show t
 The results of the t-test were as follows:
 p-value = 0.00005986
 95% confident that the true standard deviation is between 15.97672 and 32.21666
+Because the p-vale was so low, we were able to reject the null that defensive rank impacts each team's win rate equally. In fact, because the true standard deviation is likely between 15.97672 and 32.21666, defensive rank likely has an incredibly variable impact on each football team.
 
 
 
