@@ -66,6 +66,8 @@ Furthermore, no R-squared value reached 0.5, meaning the defensive statistics la
 Ultimately, the linear regression visualizations and regression equations show that better defensive statistics possess a strong relationship with a higher number of wins, but the R-squared values show that they do not correlate strongly enough to be the driving force.
 
 The results of the t-test were as follows:
+p-value = 0.00005986
+95% confident that the true standard deviation is between 15.97672 and 32.21666
 
 
 
